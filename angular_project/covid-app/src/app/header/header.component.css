@@ -1,0 +1,7 @@
+.navbar-brand {
+    text-align: center;
+}
+
+#bkg_img {
+    background-image: url(../../assets/images/image1.jpg);
+}

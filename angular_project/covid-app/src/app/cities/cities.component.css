@@ -1,0 +1,45 @@
+.cityInfo {
+    text-align: center;
+}
+
+.space {
+    width: 200px;
+    height: auto;
+    display: inline-block;
+}
+
+.required:after {
+    content: " *";
+    color: red;
+}
+
+select {
+    padding: 6px;
+}
+
+label {
+    width: 240px;
+    display: inline-block;
+    font-size: 20px;
+    font-style: normal;
+}
+
+input {
+    padding: 3px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.d-flex {
+    margin-left: 200px;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+#btn1,
+#btn2 {
+    background-color: #00394d;
+    color: white;
+}

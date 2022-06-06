@@ -1,0 +1,86 @@
+<div class="container">
+
+    <div>
+        <label class="required"><b>Please select a city:</b></label>
+        <select mdbDropdown class="btn btn-light dropdown-toggle" (change)="selectChangeHandler($event)">
+            <option value="0" disabled selected hidden>---Select---</option>
+            <option *ngFor="let city of cities" value={{city.cityId}}>
+                {{city.cityName}}
+            </option>
+        </select>
+
+        <br>
+
+        <label><b>Choose the time period:</b></label><br>
+        <label>From &nbsp;</label>
+        <input type="date" name="From" max="{{date | date:'yyyy-MM-dd'}}" (change)="sendFromDate($event)" /><br>
+        <label>To &nbsp;</label>
+        <input type="date" name="To" min={{fromDate}} max="{{date | date:'yyyy-MM-dd'}}" (change)="sendToDate($event)" />
+    </div>
+
+    <br><br>
+
+    <div>
+        <div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <button id="btn1" class="btn text-center " (click)="OnGetCityInfo()"> Display Infections</button>
+                </li>
+
+                <div class="space">
+
+                </div>
+
+                <li class="nav-item">
+                    <button id="btn2" class="btn text-center " (click)="exportCSV()"> Export CSV</button>
+                </li>
+
+            </ul>
+        </div>
+
+        <div>
+            <table class="table table-striped" [hidden]="isTableVisible">
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Total Cases</th>
+                        <th>Active Cases</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let i of cityInfections | paginate
+                                                        : {
+                                                            itemsPerPage: tableSize,
+                                                            currentPage: page,
+                                                            totalItems: count
+                                                        };">
+                        <td>{{i.date}}</td>
+                        <td>{{i.totalCases}}</td>
+                        <td>{{i.activeCases}}</td>
+
+                    </tr>
+                </tbody>
+
+                <div class="d-flex justify-content-center">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                    </pagination-controls>
+                </div>
+            </table>
+
+            <div>
+                <div style="display: block" [hidden]="isChartVisible">
+
+                    <canvas baseChart [data]="covidData" [type]="'line'" [options]="chartOptions" [hidden]="isChartVisible"></canvas>
+                </div>
+            </div>
+
+            <br><br>
+
+        </div>
+
+    </div>
+
+
+</div>
